@@ -33,12 +33,14 @@ sccnnDetectionCodePath="${currentPath}/cell_detector/analysis/"
 classificationCodePath="${currentPath}/cell_classifier/classification/"
 matlabPath="${currentPath}/cell_detector/matlab_common/"
 outputAnnotationCodePath="${currentPath}/cell_classifier/output_image_labelling/"
+mergeCSVCodePath="${currentPath}/cell_classifier/merge_csvs/"
 
 cellDetectionCSVPath="${cellDetectionResultsPath}/20180117/csv/"
 cellClassificationCSVPath="${cellClassificationResultsPath}/csv/"
 smallDotTilePath="${cellClassificationResultsPath}/labelledImages/"
 bigDotTilePath="${cellClassificationResultsPath}/labelledImagesBigDot/"
 tifPath="${cellClassificationResultsPath}/tif/"
+mergeCSVPath="${cellClassificationResultsPath}/all_cells/"
 
 for file in "${files[@]}"; do
     imageName="$(basename "$file")"
@@ -54,7 +56,7 @@ for file in "${files[@]}"; do
 
     python3 -c "import sys; sys.path.append('${classificationCodePath}'); import processCSVs; processCSVs.processCSVs('${imageName}', '${cellDetectionCSVPath}', '${tilePath}', '${cellClassifierPath}', '${cellClassificationCSVPath}', segmentPath='${segmentationTilePath}', batchSize=${classificationBatchSize}, outLabels=${labelNames}, minProb=${cellClassCertainty}, noClassLabel=${noLabelIdx}, outputProbs=${outputProbs})"
 
-    matlabOpeningCommands="addpath(genpath('${matlabPath}'), genpath('${outputAnnotationCodePath}'));"
+    matlabOpeningCommands="addpath(genpath('${matlabPath}'), genpath('${outputAnnotationCodePath}'), genpath('${mergeCSVCodePath}'));"
 
     dotAnnotationSize=6
     tifFile="${tifPath}/${imageName%.*}_Annotated.tif"
@@ -65,6 +67,10 @@ for file in "${files[@]}"; do
     tifFile="${tifPath}/${imageName%.*}_AnnotatedBigDot.tif"
 
     matlabBigDotCommands="WriteAnnotations('${imageName}', '${cellClassificationCSVPath}', '${tilePath}', '${bigDotTilePath}', '${labelFile}', ${dotAnnotationSize}); Tiles2TIF('${bigDotTilePath}/${imageName}/', [${tileWidth} ${tileHeight}], [${imageWidth}, ${imageHeight}], '${tifFile}', 'jpg', false);"
+    
+    mergeCSVFile="${mergeCSVPath}/${imageName%.*}.csv"
+    
+    matlabMergeCSVCommands="MergeCSVs('${cellClassificationCSVPath}/${imageName}', '${tilePath}/${imageName}', '${mergeCSVFile}');"
 
-    matlab -nodesktop -nosplash -r "${matlabOpeningCommands} ${matlabSmallDotCommands} ${matlabBigDotCommands} exit;"
+    matlab -nodesktop -nosplash -r "${matlabOpeningCommands} ${matlabSmallDotCommands} ${matlabBigDotCommands} ${matlabMergeCSVCommands} exit;"
 done
