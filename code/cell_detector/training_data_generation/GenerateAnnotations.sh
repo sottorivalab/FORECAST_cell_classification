@@ -1,14 +1,14 @@
 #!/bin/bash
 
 currentPath=$(dirname "$0")
-CSVAnnotationsFolder=$1
-TilePath=$2
-WarMatPath=$3
-OutMatPath=$4
-h5Path=$5
-NegativeLabels=$6
-trainH5Name=$7
-validH5Name=$8
+CSVAnnotationsFolder="/../../../training_data/input_data/cell_labels/"
+TilePath="../../../training_data/input_data/annotation_tiles/"
+WarMatPath="../../../training_data/detection_data/WarMat/"
+OutMatPath="../../../training_data/detection_data/OutMat/"
+h5Path="../../../training_data/detection_data/h5/"
+NegativeLabels="['unk']"
+trainH5Name="TrainData.h5"
+validH5Name="ValidData.h5"
 
 PositiveWarMatPath="${WarMatPath}/Positive/"
 NegativeWarMatPath="${WarMatPath}/Negative/"

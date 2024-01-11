@@ -1,5 +1,5 @@
-ff0000 epithelial #Epithelial cell
-00ff00 stromal #Stromal cell
-0000ff immune #Chronic inflammatory cell
-00ffff immune #Acute inflammatory cell
-800000 unknown #Unknown
+pinred epithelial #Epithelial cell
+pingreen stromal #Stromal cell
+pinblue immune #Chronic inflammatory cell
+flagblue immune #Acute inflammatory cell
+unk unknown #Unknown
