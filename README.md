@@ -1,4 +1,4 @@
-# FORECAST_cell_classification
+# FORECAST Cell Classification Pipeline
 
 This repository contains the code for the whole slide image cell classification pipeline used in the paper *Tumour evolvability metrics predict recurrence beyond 10 years in locally-advanced prostate cancer* by Fernandez-Mateos, Cresswell, Trahearn, *et al*.
 
