@@ -7,6 +7,12 @@ function MergeCSVs(inFolder, tileFolder, outCSV)
         outCSV = fullfile(inFolder, 'AllCells.csv');
     end
     
+    [outDir, ~, ~] = fileparts(outCSV);
+    
+    if ~isfolder(outDir)
+        mkdir(outDir);
+    end
+    
     fScanText = fileread(fullfile(tileFolder, '/FinalScan.ini'));
     
     tWidth = regexp(fScanText, '(iImageWidth=)(\d*)', 'tokens');
@@ -36,4 +42,3 @@ function MergeCSVs(inFolder, tileFolder, outCSV)
     end
     writetable(cells, outCSV);
 end
-
