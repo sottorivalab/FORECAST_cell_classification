@@ -1,14 +1,14 @@
 #!/bin/bash
 
-tilePath="../tiles/tiles_norm_c/"
-segmentationTilePath="../tiles/masks/"
-cellDetectionResultsPath="../results/detection/"
-cellClassificationResultsPath="../results/classificaion/"
+tilePath="$PWD/../tiles/tiles_norm_c/"
+segmentationTilePath="$PWD/../tiles/masks/"
+cellDetectionResultsPath="$PWD/../results/detection/"
+cellClassificationResultsPath="$PWD/../results/classificaion/"
 
-cellDetectorCheckPointPath="../models/detection/"
-cellClassifierPath="../models/classification/Cell_Classifier.h5"
+cellDetectorCheckPointPath="$PWD/../models/detection/"
+cellClassifierPath="$PWD/../models/classification/Cell_Classifier.h5"
 
-labelFile="../config/cell_labels.txt"
+labelFile="$PWD/../config/cell_labels.txt"
 labelNames="['epithelial', 'stromal', 'immune', 'immune', 'unknown']"
 noLabelIdx=4
 
