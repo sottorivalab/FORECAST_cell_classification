@@ -3,7 +3,7 @@
 tilePath="$PWD/../tiles/tiles_norm_c/"
 segmentationTilePath="$PWD/../tiles/masks/"
 cellDetectionResultsPath="$PWD/../results/detection/"
-cellClassificationResultsPath="$PWD/../results/classificaion/"
+cellClassificationResultsPath="$PWD/../results/classification/"
 
 cellDetectorCheckPointPath="$PWD/../models/detection/"
 cellClassifierPath="$PWD/../models/classification/Cell_Classifier.h5"
